@@ -161,10 +161,14 @@ var module = (function() {
   // Anything that is being returned is made public and can be invoked from
   // outside our lexical scope
   return {
-    // Code here.
+    publicMethod: function() {
+      let results = privateMethod()
+      return results
+    }
   };
 })();
 
+module.publicMethod()
 
 
 ////////// PROBLEM 7 //////////
@@ -180,7 +184,14 @@ function secretNumber() {
   var secret = 143;
 
   return {
-    // Code here
+    addToSecret: function(number) {
+      secret += number
+      return secret
+    },
+    takeAwayFromSecret: function(number) {
+      secret -= number
+      return secret
+    }
   };
 }
 
@@ -205,10 +216,23 @@ function secretNumber() {
 */
 
 function timeOutCounter() {
-  for (var i = 0; i <= 5; i++) {
+  for (let i = 0; i <= 5; i++) {
     setTimeout(function() {
       console.log(i);
     }, i * 1000);
   }
 }
 timeOutCounter();
+
+// function timeOutCounter() {
+//   for (var i = 0; i <= 5; i++) {
+//     function displayTime(time){
+//       setTimeout(function() {
+//         console.log(time);
+//       }, i * 1000);
+
+//     }
+//     displayTime(i)
+//   }
+// }
+// timeOutCounter();
